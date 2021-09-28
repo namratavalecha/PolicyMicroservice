@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: policymicroserviepas
-        image: authmicroservicecr.azurecr.io/quotesmicroservice:latest
+        image: policyadministrationsystem.azurecr.io/paspolicymicroservice:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
-      - name: policysecret
+      - name: policyadminsecret
 ---
 apiVersion: v1
 kind: Service
