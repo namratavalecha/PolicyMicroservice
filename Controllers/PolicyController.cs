@@ -47,6 +47,8 @@ namespace PolicyMicroservice.Controllers
         [Route("createPolicy")]
         public async Task<IActionResult> CreatePolicy(CreatePolicyDetails createPolicyDetails, [FromHeader] string authorization)
         {
+            if(authorization == null)
+                return Unauthorized("Please provode token");
             _log4net.Info($"POST: /createPolicy endpoint invoked :");
             if (AuthenticationHeaderValue.TryParse(authorization, out var headerValue))
             {
@@ -83,6 +85,8 @@ namespace PolicyMicroservice.Controllers
         [Route("issuePolicy")]
         public async Task<IActionResult> IssuePolicy(IssuePolicyDetails issuePolicyDetails, [FromHeader] string authorization)
         {
+            if(authorization == null)
+                return Unauthorized("Please provode token");
             if (AuthenticationHeaderValue.TryParse(authorization, out var headerValue))
             {
                 var result = await CheckTokenValidity(headerValue.Scheme, headerValue.Parameter);
@@ -120,6 +124,8 @@ namespace PolicyMicroservice.Controllers
         [Route("viewPolicy/{ConsumerId}/{PolicyId}")]
         public async Task<IActionResult> ViewPolicy(string ConsumerId, string PolicyId, [FromHeader] string authorization)
         {
+            if(authorization == null)
+                return Unauthorized("Please provode token");
             if (AuthenticationHeaderValue.TryParse(authorization, out var headerValue))
             {
                 var result = await CheckTokenValidity(headerValue.Scheme, headerValue.Parameter);
@@ -152,6 +158,8 @@ namespace PolicyMicroservice.Controllers
         [Route("getQuotes/{propertyValue}/{businessValue}/{propertyType}")]
         public async Task<IActionResult> GetQuotes(int propertyValue, int businessValue, string propertyType, [FromHeader] string authorization)
         {
+            if(authorization == null)
+                return Unauthorized("Please provode token");
             if (AuthenticationHeaderValue.TryParse(authorization, out var headerValue))
             {
                 var result = await CheckTokenValidity(headerValue.Scheme, headerValue.Parameter);

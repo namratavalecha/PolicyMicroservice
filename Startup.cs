@@ -36,12 +36,12 @@ namespace PolicyMicroservice
             services.AddTransient<IPolicyRepository, PolicyRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer("Server=tcp:mftepas.database.windows.net,1433;Initial Catalog=PolicyAdministrationSystem;Persist Security Info=False;User ID=mftepas;Password=project#123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
-            //services.AddCors(c => c.AddPolicy("POD_2_Policy", builder =>
-            //{
-            //    builder.AllowAnyOrigin();
-            //    builder.AllowAnyMethod();
-            //    builder.AllowAnyHeader();
-            //}));
+            services.AddCors(c => c.AddPolicy("POD_2_Policy", builder =>
+            {
+               builder.AllowAnyOrigin();
+               builder.AllowAnyMethod();
+               builder.AllowAnyHeader();
+            }));
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -87,7 +87,7 @@ namespace PolicyMicroservice
             }
 
             app.UseHttpsRedirection();
-            //app.UseCors("POD_2_Policy");
+            app.UseCors("POD_2_Policy");
             app.UseRouting();
             loggerFactory.AddLog4Net();
             app.UseAuthorization();
