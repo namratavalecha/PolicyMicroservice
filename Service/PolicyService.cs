@@ -77,7 +77,7 @@ namespace PolicyMicroservice.Service
                     // CorrectElements  
                     objectsList.Add(item.ToObject<T>());
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     InvalidJsonElements = InvalidJsonElements ?? new List<string>();
                     InvalidJsonElements.Add(item.ToString());

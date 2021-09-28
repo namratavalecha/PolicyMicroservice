@@ -10,7 +10,7 @@ COPY ["PolicyMicroservice.csproj", ""]
 RUN dotnet restore "./PolicyMicroservice.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "QuotesAPI.csproj" -c Release -o /app/build
+RUN dotnet build "PolicyMicroservice.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "PolicyMicroservice.csproj" -c Release -o /app/publish
