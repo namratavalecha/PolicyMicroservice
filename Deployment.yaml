@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: policymicroservice-deployment
+  labels:
+    app: PolicyMicroservicePAS
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: PolicyMicroservicePAS	  
+  template:
+    metadata:
+      labels:
+        app: PolicyMicroservicePAS
+    spec:
+      containers:
+      - name: policymicroserviepas
+        image: authmicroservicecr.azurecr.io/quotesmicroservice:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: policysecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: policymicroserviepasservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: PolicyMicroservicePAS
