@@ -91,7 +91,7 @@ namespace PolicyMicroservice.Repository
         public string GetPermissiblePolicy(string PropertyType,int BusinessValue)
         {   //Not filtered with business value because of lack of data with all combination of business value and property type (10*8)
             _log4net.Info("Inside try" + PropertyType);
-            PolicyMaster policy = PolicyMasterData.policyMastersList.FirstOrDefault(p => p.BusinessValue.Equals(BusinessValue));
+            PolicyMaster policy = PolicyMasterData.policyMastersList.FirstOrDefault(p => p.PropertyType.Equals(PropertyType));
             _log4net.Info("Inside try" + policy.PolicyId);
             //PolicyMaster policy = _db.policyMasters.Where(t => t.PropertyType == PropertyType).FirstOrDefault();
             if (policy != null)
