@@ -56,7 +56,7 @@ namespace PolicyMicroservice.Repository
                     string acceptedQuote = consumerPolicy.AcceptedQuotes;
                     if (acceptedQuote != "No Quotes, Contact Insurance Provider")
                     {
-                        PolicyData.PolicyList.Remove(consumerPolicy);
+                        _db.consumerPolicies.Remove(consumerPolicy);
                         ConsumerPolicy newConsumerPolicy = new ConsumerPolicy()
                         {
                             ConsumerId = issuePolicyDetails.ConsumerId,
